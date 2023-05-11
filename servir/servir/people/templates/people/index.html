@@ -1,0 +1,73 @@
+{% load static %}
+
+{% block content %} 
+<div class="container pt-2">
+    <h5>Lab members:</h5>
+	<p></p>
+	<div id='people'>
+		<!-- {% for person in allPeople %}
+		<div class="card mt-2" id="people">
+			<div class="row no-gutters">
+				<div class="col-auto">
+					{% with "people/"|add:person.firstName|add:"_"|add:person.lastName|add:"_150px.png" as mugURL %}
+					<img src={% static mugURL %} style="height:150px;width:auto"></img>
+					{% endwith %}
+				</div>
+				<div class="col">
+					<div class="card-block px-2">
+						<h6 class="card-title">{{person.firstName}} {{person.lastName}}, {{person.labPosition}}</h6>
+						<p class="card-text">{{person.shortBio}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %} -->
+    </div>
+</div>
+
+<script>
+const peopleContainerElemenet = document.getElementById("people");
+loadPeople(peopleContainerElemenet);
+
+function loadPeople(peopleElement) {
+	const xhr = new XMLHttpRequest();
+	const method = 'GET';
+	const url = "/people/api/list/";
+	const responseType = "json";
+	xhr.responseType = responseType;
+	xhr.open(method, url);
+	xhr.onload = function() {
+		const serverResponse = xhr.response;
+		var personObjList = serverResponse;
+		console.log(personObjList)
+		var finalPeopleStr = "";
+		for(let i = 0; i < personObjList.length; i++) {
+			var currentItem = formatPersonElement(personObjList[i]);
+			finalPeopleStr += currentItem;
+		}
+		peopleElement.innerHTML += finalPeopleStr;
+	}
+	xhr.send()
+}
+	
+function formatPersonElement(person) {
+	var formattedPerson = 
+	"<div class='card mt-2'>" + 
+		"<div class='row no-gutters'>" + 
+			"<div class='col-auto'>" + 
+			"<img src='/' style='height:150px; width:auto'></img>" + 
+			"</div>" + 
+			"<div class='col'>" + 
+				"<div class='card-block px-2'>" + 
+					"<h6 class='card-title'> " + person.firstName + " "  + person.lastName + ", " +  person.labPosition + "</h6><p class='card-text'>" + person.shortBio + "</p>" + 
+				"</div>" +
+			"</div>" + 
+		"</div>" + 
+	"</div>"
+
+	return formattedPerson
+}
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{
+    "ALLOWED_HOSTS": [
+        "localhost",
+        "127.0.0.1"
+    ],
+    "CSRF_TRUSTED_ORIGINS": [
+        "http://localhost:8000",
+        "http://127.0.0.1:8000"
+    ],
+    "DATA_DIR": "C:\\Users\\Dell\\Downloads\\20191123.nc",
+    "SECRET_KEY": "X=9T8JfG-uyN<TqPBE+8>aGr);vO<g$FHF^|OXt:p9_<i}Oq>Kym`gNeW-qk1]pQ",
+    "private_key_json": "C:\\Users\\Dell\\Downloads\\v17orgt8a4mkr4cl35qo670sce4127g0.apps.googleusercontent.com",
+    "sample_netCDF": "https://thredds.servirglobal.net/thredds/fileServer/mk_aqx/geos/20191123.nc",
+    "service_account": "registered_ee_service_account_associated_with_key"
+}
